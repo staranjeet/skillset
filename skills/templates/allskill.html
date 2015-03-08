@@ -45,6 +45,7 @@ window.onload = function () {
 <script type="text/javascript" src="../static/js/canvasjs.min.js"></script> 
 </head>
 <body>
+	{% if skills%}
 <div id="chartContainer" style="height: 300px; width: 100%;margin-top:5%"></div>
 <br/><br/>
 <table class="table">
@@ -56,8 +57,13 @@ window.onload = function () {
 		<td>{{i.skill}}</td>
 		<td>{{i.score}}</td>
 		<td>{{i.normalized}}</td>
+		<td><a href='/deleteskill/?sname={{i.skill}}'>X</a></td>
 	</tr>
 	{%endfor%}
+	{%else%}
+	<h2>Oops No skill! :(</h2>
+	<a href='/'>Take me Back</a>
+	{%endif%}
 </body>
 
 

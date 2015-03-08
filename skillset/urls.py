@@ -11,5 +11,7 @@ urlpatterns = patterns('',
     url(r'^$','skills.views.index',name='index'),
     url(r'^newskill/$','skills.views.newskill',name='newskill'),
     url(r'^allskill/$','skills.views.allskill',name='allskill'),
+    url(r'^deleteskill/$','skills.views.deleteskill',name='deleteskill'),
+
 
 )
