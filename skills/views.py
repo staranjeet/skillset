@@ -29,11 +29,11 @@ def newskill(request):
 			print 'checking and creating a new session'
 			request.session.create()
 		request.session['userId']=request.session._session_key
-		session_id=request.session['userId']
+	session_id=request.session['userId']
 	if request.POST:
 		skill=request.POST['skill'].title()
 		score=float(request.POST['score'])
-		s=Skils.objects.all(sessionid=session_id)
+		s=Skils.objects.filter(sessionid=session_id)
 		if not s:		#means this is the first entry
 			newskill=Skils(skill=skill,score=score,normalized=100.0,sessionid=session_id)
 			newskill.save()
