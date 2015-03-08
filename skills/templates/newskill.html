@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>
+		Add a new skill
+	</title>
+	 <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	 <style>
+	 #main_body{
+		width:40%;
+		margin-right:auto;
+		margin-left:auto;
+		margin-top:7%;
+	 }
+	 </style>
+	</head>
+<body>
+	<div id="main_body">
+	<form action='/newskill/' method='POST'>
+		   {% csrf_token %}
+	
+  
+  <div class="form-group">
+    <label for="skill">Recently I got good at </label>
+   <input type='text' name='skill' placeholder='python,c++,django,etc' class="form-control">
+</div>
+		<div class="form-group">
+    <label for="skill">Lets keep it </label>
+   <input type='text' name='score' placeholder='75% or 50% or whatever you wish' class="form-control">
+</div>
+		
+		<input type='submit' value='Add it!' class="btn btn-primary btn-lg btn-block">
+	</form>
+	<button type="button" class="btn btn-warning btn-lg btn-block" onclick="location.href='/'">Take me back!</button>
+</div>
+</body>
+</html>
