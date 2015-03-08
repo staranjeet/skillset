@@ -12,4 +12,5 @@ class Skils(models.Model):
 	score = models.FloatField(max_length=100)
 	normalized = models.FloatField(max_length=15)
 	sessionid = models.CharField(max_length=100)
+	#skillid
 	#noteGenDate=models.DateTimeField('note date generated')

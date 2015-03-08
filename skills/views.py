@@ -53,7 +53,7 @@ def newskill(request):
 				each_skill.normalized=(each_skill.score*100.0)/temp
 				each_skill.save()
 		return HttpResponseRedirect('/')
-		
+	all_skills=Skils.objects.filter(sessionid=request.session['userId'])	
 	return render_to_response('newskill.html',{'skills':all_skills},context_instance=RequestContext(request))
 
 def deleteskill(request):
@@ -78,4 +78,4 @@ def deleteskill(request):
 			each_skill.save()
 
 		#return HttpResponse('/allskill')
-	return HttpResponseRedirect('/allskill')
+	return HttpResponseRedirect('/newskill')

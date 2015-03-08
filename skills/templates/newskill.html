@@ -4,14 +4,52 @@
 		Add a new skill
 	</title>
 	 <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-	 <style>
+	 
+<script type="text/javascript">
+window.onload = function () {
+	var chart = new CanvasJS.Chart("chartContainer",
+	{
+		title:{
+			text: "My Skill Set"
+		},
+                animationEnabled: true,
+		legend:{
+			verticalAlign: "center",
+			horizontalAlign: "left",
+			fontSize: 20,
+			fontFamily: "Helvetica"        
+		},
+		theme: "theme3",
+		data: [
+		{        
+			type: "pie",       
+			indexLabelFontFamily: "Garamond",       
+			indexLabelFontSize: 20,
+			indexLabel: "{label} {y}%",
+			startAngle:-20,      
+			showInLegend: true,
+			toolTipContent:"{legendText} {y}%",
+			dataPoints: [
+			{%for i in skills %}
+				{  y: {{i.normalized}}, legendText:"{{ i.skill }}", label: "{{ i.skill }}" },
+				
+	{% endfor %}
+			]
+		}
+		]
+	});
+	chart.render();	
+}
+</script>
+<style>
 	 #main_body{
 		width:40%;
-		margin-right:auto;
-		margin-left:auto;
-		margin-top:7%;
+		margin-left: 3%;
+		margin-top:10%;
+		float:left;
 	 }
 	 </style>
+<script type="text/javascript" src="../static/js/canvasjs.min.js"></script> 
 	</head>
 <body>
 	<div id="main_body">
@@ -32,5 +70,27 @@
 	</form>
 	<button type="button" class="btn btn-warning btn-lg btn-block" onclick="location.href='/'">Take me back!</button>
 </div>
+<div style="float:left;width:30%;margin-top:10%;padding:20px">
+	{% if skills%}
+<div id="chartContainer" style="height: 300px; "></div>
+<br/><br/>
+<table class="table">
+	<th>Skill</th>
+	<th>Actual Score</th>
+	<th>Normalised score</th>
+	<th>Delete</th>
+	{%for i in skills %}
+	<tr>
+		<td>{{i.skill}}</td>
+		<td>{{i.score}}</td>
+		<td>{{i.normalized}}</td>
+		<td><a href='/deleteskill/?sname={{i.skill}}'>X</a></td>
+	</tr>
+	{%endfor%}
+	{%else%}
+	<h2>Oops No skill! :(</h2>
+	<a href='/'>Take me Back</a>
+	{%endif%}
+	</div>
 </body>
 </html>
